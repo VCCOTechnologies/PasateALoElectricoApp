@@ -1,3 +1,29 @@
 page-home {
 
+    .principal {
+
+        background: radial-gradient(lightblue, white);
+
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: 400px;
+            height: 400px;
+        }
+
+        .hashtag {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        button {
+            margin-top: 30px;
+        }
+
+    }
+
 }
