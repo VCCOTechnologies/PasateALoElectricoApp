@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-test',
@@ -7,8 +7,12 @@ import { NavController } from 'ionic-angular';
 })
 export class TestPage {
 
-  constructor(public navCtrl: NavController) {
+  asks;
+  current_ask;
 
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.asks = navParams.get('test');
+    this.current_ask = this.asks[0];
   }
 
   returnBack() {

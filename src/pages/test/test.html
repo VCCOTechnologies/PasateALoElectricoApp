@@ -1,2 +1,39 @@
-Comienza el test
-<button (click)="returnBack()">volver</button>
+<ion-content class="centered_vertically">
+    Comienza el test
+    <button (click)="returnBack()">volver</button>
+    <ion-row>
+        <ion-card class="test_card">
+            <ion-card-header>
+                {{current_ask.title}}
+            </ion-card-header>
+
+            <ion-card-content>
+                {{current_ask.description}}
+            </ion-card-content>
+
+            <ion-row>
+                <ion-col>
+                    <button ion-button icon-left clear small>
+                        Resp 1
+                    </button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button icon-left clear small>
+                        Resp 2
+                    </button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button icon-left clear small>
+                        Resp 3
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+    </ion-row>
+    <ion-row class="test_navigation">
+        <button ion-button round outline color="default" class="bt_no_border">Siguiente</button>
+    </ion-row>
+    <ion-row class="test_summary">
+        <p>Pregunta X de Y</p>
+    </ion-row>
+</ion-content>
