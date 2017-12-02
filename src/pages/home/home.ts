@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+import { TestService } from '../../services/test.service';
 import { TestPage } from '../test/test';
 
 @Component({
@@ -9,7 +10,7 @@ import { TestPage } from '../test/test';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private testService: TestService) {
 
   }
 
@@ -28,20 +29,11 @@ export class HomePage {
     );*/
 
     setTimeout(() => { // Server call mock
-      let test = [
-        {
-          title: 'Pregunta 1',
-          description: 'Descripcion pregunta 1'
-        },
-        {
-          title: 'Pregunta 2',
-          description: 'Descripcion pregunta 2'
-        }
-      ];
+      let test = this.testService.getTest();
       this.navCtrl.push(TestPage, {
         test: test
       });
-    }, 3000);
+    }, 10);
 
   }
 

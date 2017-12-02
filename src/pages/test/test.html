@@ -4,36 +4,27 @@
     <ion-row>
         <ion-card class="test_card">
             <ion-card-header>
-                {{current_ask.title}}
+                {{currentAsk.title}}
             </ion-card-header>
 
             <ion-card-content>
-                {{current_ask.description}}
+                {{currentAsk.description}}
             </ion-card-content>
 
             <ion-row>
-                <ion-col>
+                <ion-col *ngFor="let answer of currentAsk.answers">
                     <button ion-button icon-left clear small>
-                        Resp 1
-                    </button>
-                </ion-col>
-                <ion-col>
-                    <button ion-button icon-left clear small>
-                        Resp 2
-                    </button>
-                </ion-col>
-                <ion-col>
-                    <button ion-button icon-left clear small>
-                        Resp 3
+                        {{answer}}
                     </button>
                 </ion-col>
             </ion-row>
         </ion-card>
     </ion-row>
     <ion-row class="test_navigation">
-        <button ion-button round outline color="default" class="bt_no_border">Siguiente</button>
+        <button *ngIf="currentNumAsk != test.length" ion-button round outline color="default" class="bt_no_border" (click)="nextQuestion()">Siguiente</button>
+        <button *ngIf="currentNumAsk == test.length" ion-button round outline color="default" class="bt_no_border" (click)="finishTest()">Finalizar</button>
     </ion-row>
     <ion-row class="test_summary">
-        <p>Pregunta X de Y</p>
+        <p>Pregunta {{currentNumAsk}} de {{test.length}}</p>
     </ion-row>
 </ion-content>
