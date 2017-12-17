@@ -16,6 +16,16 @@ page-test {
     .test_card {
         margin-left: 5vh;
         margin-right: 5vh;
+        margin-bottom: 5vh;
+    }
+
+    .answer_card {
+        margin-left: 5vh;
+        margin-right: 5vh;
+    }
+
+    .aswered_card {
+        background-color: #DAF7A6;
     }
 
     .test_summary {
@@ -31,5 +41,10 @@ page-test {
 
     .bt_no_border {
         border: none;
+    }
+
+    .bt_selected {
+        background-color: white;
+        border-bottom: 1px solid blue;
     }
 }

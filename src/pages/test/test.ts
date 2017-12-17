@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'page-test',
@@ -11,8 +12,9 @@ export class TestPage {
   test;
   currentAsk;
   currentNumAsk;
+  public unregisterBackButtonAction: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public platform: Platform) {
     this.test = navParams.get('test');
     this.currentAsk = this.test[0];
     this.currentNumAsk = 1;
@@ -27,6 +29,10 @@ export class TestPage {
       this.currentNumAsk++;
       this.currentAsk = this.test[this.currentNumAsk-1];
     }
+  }
+
+  selectAnswer(answer) {
+    this.currentAsk.selected = answer;
   }
 
   finishTest() {
@@ -48,5 +54,18 @@ export class TestPage {
       ]
     });
     alert.present();
+  }
+
+  ionViewDidLoad() {
+    this.initializeBackButtonCustomHandler();
+  }
+
+  ionViewWillLeave() {
+    this.unregisterBackButtonAction && this.unregisterBackButtonAction();
+  } 
+
+  initializeBackButtonCustomHandler(): void {
+    this.unregisterBackButtonAction = this.platform.registerBackButtonAction(function(event) {
+    }, 101); 
   }
 }

@@ -11,18 +11,24 @@
                         {{currentAsk.description}}
                     </ion-card-content>
         
-                    <ion-row>
-                        <ion-col *ngFor="let answer of currentAsk.answers">
-                            <button ion-button icon-left clear small>
-                                {{answer}}
+                    <!--<ion-row>
+                        <ion-col *ngFor="let answer of currentAsk.answers; index as i">
+                            <button ion-button icon-left clear small (click)="selectAnswer(answer)" [class]="'bt_selected'">
+                                {{answer}} 
                             </button>
                         </ion-col>
-                    </ion-row>
+                    </ion-row>-->
+                </ion-card>
+
+                <ion-card class="answer_card" *ngFor="let answer of currentAsk.answers; index as i" [ngClass]="{'aswered_card': currentAsk.selected == i}" (click)="selectAnswer(i)">
+                    <ion-card-content>
+                        {{answer}} 
+                    </ion-card-content>
                 </ion-card>
             </ion-row>
             <ion-row class="test_navigation">
-                <button *ngIf="currentNumAsk != test.length" ion-button round outline color="default" class="bt_no_border" (click)="nextQuestion()">Siguiente</button>
-                <button *ngIf="currentNumAsk == test.length" ion-button round outline color="default" class="bt_no_border" (click)="finishTest()">Finalizar</button>
+                <button *ngIf="currentNumAsk != test.length" ion-button round outline color="default" class="bt_no_border" (click)="nextQuestion()">Siguiente pregunta</button>
+                <button *ngIf="currentNumAsk == test.length" ion-button round outline color="default" class="bt_no_border" (click)="finishTest()">Finalizar test</button>
             </ion-row>
             <ion-row class="test_summary">
                 <p>Pregunta {{currentNumAsk}} de {{test.length}}</p>
