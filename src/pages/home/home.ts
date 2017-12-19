@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 
 import { TestService } from '../../services/test.service';
 import { TestPage } from '../test/test';
+import { AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -10,30 +11,27 @@ import { TestPage } from '../test/test';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, private testService: TestService) {
+  loading;
 
+  constructor(public navCtrl: NavController, private testService: TestService, private alertCtrl: AlertController) {
+    this.loading = false;
   }
 
   startTest() {
-
-    /* TODO: uncomment this code as soon as the server is available
+    this.loading = true;
     let resObservable = this.testService.getTest();
     let test = [];
     resObservable.subscribe(
         res => {
-            test = res.json();
+            this.loading = false;
+            this.navCtrl.push(TestPage, {
+              test: res.json()
+            });
         },
         error => {
-            //TODO: handle error
+            this.loading = false;
         }
-    );*/
-
-    setTimeout(() => { // Server call mock
-      let test = this.testService.getTest();
-      this.navCtrl.push(TestPage, {
-        test: test
-      });
-    }, 10);
+    );
 
   }
 

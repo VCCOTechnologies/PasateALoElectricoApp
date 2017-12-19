@@ -4,31 +4,23 @@
             <ion-row >
                 <ion-card class="test_card">
                     <ion-card-header>
-                        {{currentAsk.title}}
+                        {{currentAsk.titulo}}
                     </ion-card-header>
         
                     <ion-card-content>
-                        {{currentAsk.description}}
+                        {{currentAsk.descripcion}}
                     </ion-card-content>
-        
-                    <!--<ion-row>
-                        <ion-col *ngFor="let answer of currentAsk.answers; index as i">
-                            <button ion-button icon-left clear small (click)="selectAnswer(answer)" [class]="'bt_selected'">
-                                {{answer}} 
-                            </button>
-                        </ion-col>
-                    </ion-row>-->
                 </ion-card>
 
-                <ion-card class="answer_card" *ngFor="let answer of currentAsk.answers; index as i" [ngClass]="{'aswered_card': currentAsk.selected == i}" (click)="selectAnswer(i)">
+                <ion-card class="answer_card" *ngFor="let answer of currentAsk.respuestas; index as i" [ngClass]="{'aswered_card': currentAsk.selected == i}" (click)="selectAnswer(i)">
                     <ion-card-content>
-                        {{answer}} 
+                        {{answer.texto}} 
                     </ion-card-content>
                 </ion-card>
             </ion-row>
             <ion-row class="test_navigation">
-                <button *ngIf="currentNumAsk != test.length" ion-button round outline color="default" class="bt_no_border" (click)="nextQuestion()">Siguiente pregunta</button>
-                <button *ngIf="currentNumAsk == test.length" ion-button round outline color="default" class="bt_no_border" (click)="finishTest()">Finalizar test</button>
+                <button *ngIf="currentNumAsk != test.length" [disabled]="currentAsk.selected == undefined" ion-button round outline color="default" class="bt_no_border" (click)="nextQuestion()">Siguiente pregunta</button>
+                <button *ngIf="currentNumAsk == test.length" [disabled]="currentAsk.selected == undefined" ion-button round outline color="default" class="bt_no_border" (click)="finishTest()">Finalizar test</button>
             </ion-row>
             <ion-row class="test_summary">
                 <p>Pregunta {{currentNumAsk}} de {{test.length}}</p>

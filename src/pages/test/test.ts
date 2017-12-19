@@ -18,6 +18,7 @@ export class TestPage {
     this.test = navParams.get('test');
     this.currentAsk = this.test[0];
     this.currentNumAsk = 1;
+    console.log(this.test);
   }
 
   returnBack() {
